@@ -4,6 +4,9 @@
     <Compile Update="Delay.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="DropLedControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -12,6 +15,9 @@
     </Compile>
     <Compile Update="HandleVariables.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="HarrProgressBar.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Update="IfStatement.cs">
       <SubType>Form</SubType>
@@ -23,6 +29,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="LEDControls.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="New.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="SubMenus\LoopSubMenuController.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>

@@ -39,3 +39,6 @@ E:\Hard Drive\Hassan 92\8th Semester\FYP C#\FYPProject\FYPProject\obj\Debug\netc
 E:\Hard Drive\Hassan 92\8th Semester\FYP C#\FYPProject\FYPProject\obj\Debug\netcoreapp3.1\FYPProject.IfStatement.resources
 E:\Hard Drive\Hassan 92\8th Semester\FYP C#\FYPProject\FYPProject\obj\Debug\netcoreapp3.1\FYPProject.Delay.resources
 E:\Hard Drive\Hassan 92\8th Semester\FYP C#\FYPProject\FYPProject\obj\Debug\netcoreapp3.1\FYPProject.HandleVariables.resources
+E:\Hard Drive\Hassan 92\8th Semester\FYP C#\FYPProject\FYPProject\obj\Debug\netcoreapp3.1\FYPProject.New.resources
+E:\Hard Drive\Hassan 92\8th Semester\FYP C#\FYPProject\FYPProject\obj\Debug\netcoreapp3.1\FYPProject.DropLedControl.resources
+E:\Hard Drive\Hassan 92\8th Semester\FYP C#\FYPProject\FYPProject\obj\Debug\netcoreapp3.1\FYPProject.SubMenus.LoopSubMenuController.resources

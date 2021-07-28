@@ -61,6 +61,7 @@ namespace FYPProject
             this.label1.Size = new System.Drawing.Size(39, 28);
             this.label1.TabIndex = 5;
             this.label1.Text = "Pin";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // Led
             // 

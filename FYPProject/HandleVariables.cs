@@ -29,7 +29,7 @@ namespace FYPProject
         public String getvariableValue() 
         {
             String VariableValue = variableValue.Text;
-            return VariableValue;
+            return VariableValue; 
         }
         private void label3_Click(object sender, EventArgs e)
         {
@@ -37,6 +37,11 @@ namespace FYPProject
         }
 
         private void HandleVariables_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void variableType_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

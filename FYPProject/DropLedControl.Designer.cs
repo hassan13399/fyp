@@ -1,7 +1,7 @@
 ﻿
 namespace FYPProject
 {
-    partial class ledControl
+    partial class DropLedControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,18 +29,9 @@ namespace FYPProject
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.pinValue = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(24, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Pin";
             // 
             // pinValue
             // 
@@ -59,25 +50,29 @@ namespace FYPProject
             "11",
             "12",
             "13"});
-            this.pinValue.Location = new System.Drawing.Point(73, 17);
+            this.pinValue.Location = new System.Drawing.Point(170, 24);
             this.pinValue.Name = "pinValue";
-            this.pinValue.Size = new System.Drawing.Size(121, 23);
-            this.pinValue.TabIndex = 1;
-            this.pinValue.SelectedIndexChanged += new System.EventHandler(this.pinValue_SelectedIndexChanged);
+            this.pinValue.Size = new System.Drawing.Size(213, 23);
+            this.pinValue.TabIndex = 3;
             // 
-            // ledControl
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(122, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(24, 15);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Pin";
+            // 
+            // DropLedControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.Controls.Add(this.pinValue);
             this.Controls.Add(this.label1);
-            this.Name = "ledControl";
-            this.Size = new System.Drawing.Size(214, 54);
-            this.Load += new System.EventHandler(this.ledControl_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ledControl_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ledControl_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ledControl_MouseUp);
+            this.Name = "DropLedControl";
+            this.Size = new System.Drawing.Size(511, 60);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -85,7 +80,7 @@ namespace FYPProject
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox pinValue;
+        private System.Windows.Forms.Label label1;
     }
 }

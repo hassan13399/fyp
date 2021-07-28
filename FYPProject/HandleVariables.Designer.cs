@@ -91,6 +91,7 @@ namespace FYPProject
             this.variableType.Name = "variableType";
             this.variableType.Size = new System.Drawing.Size(88, 23);
             this.variableType.TabIndex = 5;
+            this.variableType.SelectedIndexChanged += new System.EventHandler(this.variableType_SelectedIndexChanged);
             // 
             // HandleVariables
             // 
