@@ -12,215 +12,45 @@ using FYPProject.SubMenus;
 using System.Collections;
 using Harr;
 
+
 namespace FYPProject
 {
 
-  
-
-    
     public partial class Form1 : Form 
     {
-        //private List<HarrProgressBar> _items = new List<HarrProgressBar>();
-        private List<UserControl> _items = new List<UserControl>();
 
-        public String type;
+       //Objects
 
         LoopSubMenuController loopSub = new LoopSubMenuController();
         ledControl ledC = new ledControl();
         ledControl lControl;
         DropLedControl d = new DropLedControl();
         DropLedControl dVar;
-
-
-        public static String pinValue, variableType, variableName, variableValue, delayValue;
-
-        private Control activeControl;
-        private Point previousLocation;
-
         ledControl ledControlObj = new ledControl();
-        
         Delay delayControlObj = new Delay();
         HandleVariables handleVariablesObj = new HandleVariables();
-        ComboBox cboxx = new ComboBox();
-        
-        ledControl ledHandle;
-        ledControl ledCon;
-        private object p1;
+
+        //Variables
+
+        public static String pinValue, variableType, variableName, variableValue, delayValue;
+        private Control activeControl;
+        private Point previousLocation;
+        public UserControl currentController;
+        public int currenIndex;
+        public String type;
+        private bool _isDragging;
+
 
         public Form1()
         {
             InitializeComponent();
             CustomizeDesign();
-            CustomizeControllerSub();
-
-            ledC.MouseUp += LedControl_MouseUp;
-            ledC.MouseMove += LedControl_MouseMove;
-
-
-        }
-
-        private void LedControl_MouseMove(object sender, MouseEventArgs e)
-        {
-            lControl = (ledControl)sender;
-
-            var location = activeControl.Location;
-            location.Offset(e.Location.X - previousLocation.X, e.Location.Y - previousLocation.Y);
-            activeControl.Location = location;
-
-
-        }
-
-        private void LedControl_MouseUp(object sender, MouseEventArgs e)
-        {
-            activeControl = null;
-            Cursor = Cursors.Default;
-
-        }
-
-        private void LedControl_MouseDown(object sender, MouseEventArgs e)
-        {
-            activeControl = sender as Control;
-            previousLocation = e.Location;
-            Cursor = Cursors.Hand;
-        }
-
-
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-
-            //Stack<int> myst = new Stack<int>();
-            //myst.Push(12);
-            //myst.Push(12);
-            //myst.Push(12);
-            //myst.Push(12);
-            //myst.Push(12);
-
-            //Console.WriteLine(myst.Pop());
-            HarrProgressBar controllers;
-            ledCon = new ledControl();
-           
-
-            ledC.MouseDown  += LedControl_MouseDown;
-            
-
-
-
-        }
-
-        //private void LedControl_MouseDown(object sender, MouseEventArgs e)
-        //{
-
-        //.WriteLine("Hassan");
-        //lControl = (ledControl)sender;
-        //Bitmap bitmap = new Bitmap(lControl.Width, lControl.Height);
-        //lControl.DrawToBitmap(bitmap, new Rectangle(Point.Empty, bitmap.Size));
-        //Cursor cursor = new Cursor(bitmap.GetHicon());
-        //Cursor.Current = cursor;
-        //this.DoDragDrop(lControl.Name, DragDropEffects.All);
-        // }
-
-
-
-
-
-
-
-        private void CustomizeDesign()
-        {
-
-            panelMediaSub.Visible = false;
-            PanelPlaylist.Visible = false;
-            loopPanel.Visible = false;
-
-
-
-        }//CustomizeDesign
-
-        private void HideSubMenu()
-        {
-
-            if (panelMediaSub.Visible == true)
-                btnMedia.Visible = false;
-            if (PanelPlaylist.Visible == true)
-                btnPlayList.Visible = false;
-            if (loopPanel.Visible == true)
-                Loops.Visible = false;
-
-
-        }//hideSubmenu
-
-        private void ShowSubMenu(Panel submenu)
-        {
-            if(submenu.Visible == false)
-            {
-                HideSubMenu();
-                submenu.Visible = true;
-            }
-            else
-            {
-                submenu.Visible = false;
-            }
-        }
-
-   
-
-        private void btnPlayList_Click(object sender, EventArgs e)
-        {
-            ShowSubMenu(PanelPlaylist);
-        }
-
-        private void btnMedia_Click(object sender, EventArgs e)
-        {
-            ShowSubMenu(panelMediaSub);
-        } 
-
-       
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Panel p1 = new Panel();
-            p1.BackColor = Color.Gray;
-            p1.Width = 400;
-            p1.Height = 200;
-            cboxx.Items.Add(1);
-            cboxx.Items.Add(2);
-            cboxx.Items.Add(3);
-            cboxx.Items.Add(4);
-            cboxx.Items.Add(5);
-            cboxx.Items.Add(6);
-            cboxx.Items.Add(7);
-            cboxx.Items.Add(8);
-            cboxx.Items.Add(9);
-            cboxx.Items.Add(10);
-            cboxx.Items.Add(11);
-            cboxx.Items.Add(12);
-            cboxx.Items.Add(13);
-            p1.Controls.Add(cboxx);
-            p1.Location = new Point(400,200);
-            Droppanel.Controls.Add(p1);
-
-            //Led l = new Led();
-            //l.MdiParent = this;
-            //l.Show();
-
-            p1.MouseMove += ppp1_MouseClick;
-
-
-
-        }//Button2 Click
-
-        private void ppp1_MouseClick(object sender, MouseEventArgs e)
-        {
-            
-
-                Point newLoc = new Point(e.X + e.Location.X, e.Y + e.Location.Y);
-                panel1.Location = newLoc;
 
             
+
         }
 
+        
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ISerialConnection con = Connection.GetConnection();
@@ -236,370 +66,254 @@ namespace FYPProject
 
 
 
-
-
-
-
-            //Console.WriteLine(value);
-            //Console.WriteLine("at Form 1");
-
             if (con != null)
             {
                 New new1 = new New();
                 using (var session = new ArduinoSession(con))
                     new1.PerformBasicTest(session);
 
-               
+            }//if
 
+        }//connectToolStripMenuItem_Click
+
+
+        private void Controller_Click(object sender, MouseEventArgs e)
+        {
+           UserControl c = (UserControl)sender;
+
+            Console.WriteLine(c);
+
+        }
+
+
+        private void if_MouseHover(object sender, EventArgs e)
+        {
+            //currentController = (UserControl)sender;             
+            //currenIndex = Droppanel.Controls.GetChildIndex(currentController);
+            //Console.WriteLine(currentController);
+
+        }
+
+        private void ifMouse_Move(object sender, MouseEventArgs e)
+        {
+            //this.DoDragDrop(sender, DragDropEffects.All);
+        }
+
+        private void if_MouseDown(object sender, MouseEventArgs e)
+        {
+
+             currentController = (UserControl)sender;
+            int i = Droppanel.Controls.GetChildIndex(currentController);
+
+            base.OnMouseDown(e);
+
+            currentController.DoDragDrop(sender, DragDropEffects.Move);
+            //Console.WriteLine(currentController);
+        }
+
+        private void if_DragOver(object sender, DragEventArgs e)
+        {
+            base.OnDragOver(e);
+            // is another dragable
+            if (e.Data.GetData(typeof(UserControl)) != null)
+            {
+                FlowLayoutPanel p = (FlowLayoutPanel)(sender as UserControl).Parent;
+
+                int myIndex = p.Controls.GetChildIndex((sender as UserControl));
+
+
+                UserControl q = (UserControl)e.Data.GetData(typeof(UserControl));
+                p.Controls.SetChildIndex(q, myIndex);
+            }
+        }
+
+        
+        private void while_MouseDown(object sender, MouseEventArgs e)
+        {
+            UserControl c = (UserControl)sender;
+            int i = Droppanel.Controls.GetChildIndex(c);
+
+            base.OnMouseDown(e);
+            this.DoDragDrop(sender, DragDropEffects.All);
+        }
+
+        private void while_DragOver(object sender, DragEventArgs e)
+        {
+            base.OnDragOver(e);
+            // is another dragable
+            if (e.Data.GetData(typeof(UserControl)) != null)
+            {
+                FlowLayoutPanel p = (FlowLayoutPanel)(sender as UserControl).Parent;
+                //Current Position             
+                int myIndex = p.Controls.GetChildIndex((sender as UserControl));
+
+                //Dragged to control to location of next picturebox
+                UserControl q = (UserControl)e.Data.GetData(typeof(UserControl));
+                p.Controls.SetChildIndex(q, myIndex);
+            }
+        }
+
+        private void Droppanel_DragDrop(object sender, DragEventArgs e)
+        {
+
+
+
+            if (type == "ifBtn")
+            {
+                
+
+                ifStatementController l = new ifStatementController();
+                Droppanel.Controls.Add(l);
+                
+                //l.AllowDrop = true;
+                l.MouseDown += new MouseEventHandler(if_MouseDown);
+               // l.DragOver += new DragEventHandler(if_DragOver);
+                //l.MouseMove += new MouseEventHandler(ifMouse_Move);
+
+               
+                //l.MouseClick += new MouseEventHandler(Controller_Click);
+                //l.MouseHover += new EventHandler(if_MouseHover);
+
+                Droppanel.AutoScrollPosition = new Point(l.Left, l.Right);
+               
+                type = "";
+
+            }else if (type == "whileBtn")
+            {
+                WhileConditionController c = new WhileConditionController();
+                Droppanel.Controls.Add(c);
+                //c.AllowDrop = true;
+                c.MouseDown += new MouseEventHandler(if_MouseDown);
+                //c.DragOver += new DragEventHandler(if_DragOver);
+                
+                Droppanel.AutoScrollPosition = new Point(c.Left, c.Right);
+
+               
+                type = "";
+            }
+            else if (type == "loopSubMenuC")
+            {
+                Delay c = new Delay();
+                
+                Droppanel.Controls.Add(c);
+                c.MouseDown += new MouseEventHandler(if_MouseDown);
+                Droppanel.AutoScrollPosition = new Point(c.Left, c.Right);
+                type = "";
+               
             }
 
-            
-            //String delayValue = delayControlObj.getDelayValue();
-            //Console.WriteLine(delayValue);
-            //String variableType = handleVariablesObj.getvariableType();
-            //Console.WriteLine(variableType);
-            //String variableName = handleVariablesObj.getvariableName();
-            //Console.WriteLine(variableName);
-            //String variableValue = handleVariablesObj.getvariableValue();
-            //Console.WriteLine(variableValue);
-
-           // ArduinoBasicFunction.PerformBasicTest();
 
             
-        }
+               
+                Point mousePosition = Droppanel.PointToClient(new Point(e.X, e.Y));
+                Control destination = Droppanel.GetChildAtPoint(mousePosition);
+                int indexDestination = Droppanel.Controls.IndexOf(destination);
 
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-            
-        }
-
-        private void button10_Click(object sender, EventArgs e)
-        {
-            IfStatement i = new IfStatement();
-            i.MdiParent = this;
-            i.Show();
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            //Panel Droppanel = new Panel();
-            //Droppanel.BackColor = Color.Red;
-            //Droppanel.Show();
-
-            //Panel droppanel3;
-            //Form delayForm = new Form() { TopLevel = false, TopMost = true };
-            //Button btn = new Button();
-            // btn.Text = "doen";
-            // btn.Location = new Point(100,100);
-            //btn.BackColor = Color.Blue;
-            //delayForm.BackColor = Color.Red;
-            //delayForm.Resize = false;
-            //delayForm.Show();
-
-            ScrollBar vScrollBar1 = new VScrollBar();
+            if (currentController != null)
+            {
+                Droppanel.Controls.SetChildIndex(currentController, indexDestination);
+                currentController = null;
+            }
 
 
-            Panel p1 = new Panel();
-            p1.BackColor = Color.Red;
-            p1.Width = 400;
-            p1.Height = 200;
-            ComboBox cbox = new ComboBox();
-            cbox.Items.Add(100);
-            cbox.Items.Add(200);
-            cbox.Items.Add(300);
-            cbox.Items.Add(400);
-            cbox.Items.Add(500);
-            cbox.Items.Add(600);
-            cbox.Items.Add(700);
-            cbox.Items.Add(800);
-            cbox.Items.Add(900);
-            cbox.Items.Add(1000);
-            cbox.Items.Add(2000);
-            cbox.Items.Add(3000);
 
-            p1.Controls.Add(cbox);
-            Droppanel.Controls.Add(p1);
-              
-        }
+        }//DroppanelDragdrop
 
        
 
-        private void variable_Click(object sender, EventArgs e)
+        private void Droppanel_DragEnter(object sender, DragEventArgs e)
         {
-
-
-            
-            
-            
-            //Panel variablePanel = new Panel();
-            //variablePanel.BackColor = Color.Red;
-            //variablePanel.Location = new Point(100,100);
-            //variablePanel.Width = 200;
-            //variablePanel.Height = 200;
-            ////variablePanel.Show();
-            //ComboBox TypeForComboBox = new ComboBox();
-            //TypeForComboBox.Items.Add("Boolean");
-            //TypeForComboBox.Items.Add("String");
-            //TypeForComboBox.Items.Add("int");
-            //TypeForComboBox.Items.Add("Double");
-            //TextBox variableName = new TextBox();
-            //TextBox variableValue = new TextBox();
-            //variablePanel.Controls.Add(TypeForComboBox);
-            //variablePanel.Controls.Add(variableName);
-            //variablePanel.Controls.Add(variableValue);
-            //Droppanel.Controls.Add(variablePanel); 
+            //if (e.Data.GetDataPresent(typeof(MyWrapper)))
+            //    e.Effect = DragDropEffects.Move;
+            //else
+            //    e.Effect = DragDropEffects.None;
+            e.Effect = DragDropEffects.All;
 
         }
 
 
-        
-        private void CustomizeControllerSub()
+
+        private void CustomizeDesign()
         {
 
-           
+            setUpSubFlowPanel.Visible = false;
+            logicsSubFlowPanel.Visible = false;
+            loopsSubFlowPanel.Visible = false;
+            pinSubPanel.Visible = false;
 
-            
+
+
         }//CustomizeDesign
 
-        private void HideControllerSub()
+        
+        private void btnPlayList_Click(object sender, EventArgs e)
         {
-           
+            ShowSubMenu(logicsSubFlowPanel);
         }
 
-        private void ShowControllerSub(Panel submenu)
+        private void btnMedia_Click(object sender, EventArgs e)
+        {
+            ShowSubMenu(setUpSubFlowPanel);
+        }
+
+        private void Loops_Click(object sender, EventArgs e)
+        {
+
+            ShowSubMenu(loopsSubFlowPanel);
+
+        }
+
+        private void ShowSubMenu(Panel submenu)
         {
             if (submenu.Visible == false)
             {
-                HideControllerSub();
+
                 submenu.Visible = true;
             }
             else
             {
                 submenu.Visible = false;
             }
-        }
+        }//ShowSubMenu
 
-        private void controller_Click(object sender, EventArgs e)
-        {
-
-            
-
-        }
-
-       
-       
-        public void CustomizeLddLocation()
-        {
-            ledControlObj.Location = new Point(50, 100);
-        }
-
-        private void ledControl1_Click(object sender, EventArgs e)
-        {
-
-            //Droppanel.Controls.Add(ledControlObj);
-            //CustomizeLddLocation();
-            ////ledControlObj.Location = new Point(50, 100);
-            //ledControlObj.MouseDown += new MouseEventHandler(ledControl1_MouseDown);
-            //ledControlObj.MouseMove += new MouseEventHandler(ledControl1_MouseMove);
-            //ledControlObj.MouseUp += new MouseEventHandler(ledControl1_MouseUp);
-
-           // this.Controls.Add(ledControlObj);
-
-        }
-
-       
-
-        private void delay1_Click(object sender, EventArgs e)
-        {
-            delayControlObj.Location = new Point(200,200) ;
-            Droppanel.Controls.Add(delayControlObj);
-        }
-
-        
-
-        public void ShowSub(UserControl submenu)
-        {
-
-
-
-            //if (!Droppanel.Controls.Contains(submenu))
-            //{
-
-            //    Droppanel.Controls.Add(submenu);
-
-            //}
-            //else if (Droppanel.Controls.Contains(submenu))
-            //{
-            //    Droppanel.Controls.Remove(submenu);
-            //}
-
-        }
-
-
-        private void variable_MouseClick(object sender, MouseEventArgs e)
-        {
-
-            
-            ShowSub(loopSub);
-           
-
-        }
-
-        //private void Droppanel_DragEnter(object sender, DragEventArgs e)
-        //{
-        //    e.Effect = DragDropEffects.Move;
-        //}
-
-
-        //private void Droppanel_DragDrop(Object sender, DragEventArgs e)
-        //{
-
-        //    // DropLedControl c = new DropLedControl();
-        //    //Droppanel.Controls.Add(c);
-
-        //    
-
-
-        //}
-
-
-        private void Loops_Click(object sender, EventArgs e)
-        {
-
-            ShowControllerSub(loopPanel);
-
-        }
 
         private void whileBtn_MouseDown(object sender, MouseEventArgs e)
         {
-
-            //DropLedControl c = new DropLedControl();
-            this.DoDragDrop(whileBtn.Name, DragDropEffects.All);
             type = "whileBtn";
-
-            //Console.WriteLine(sender.GetType());
-;
-
-            // Droppanel_DragDrop
-            
+            this.DoDragDrop(whileBtn.Name, DragDropEffects.All);
            
         }
 
-       
-
-        private void whileBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-       
-
-        
-        //private void Droppanel_MouseDown(object sender, MouseEventArgs e)
-        //{
-
-        //}
 
         private void ifBtn_MouseDown(object sender, MouseEventArgs e)
         {
-            type = "ifBtn";
-
+            type = "ifBtn";   
             this.DoDragDrop(ifBtn.Name, DragDropEffects.All);
             
         }
 
-        private void button9_MouseDown(object sender, MouseEventArgs e)
+       
+        private void pin_Click(object sender, EventArgs e)
         {
+            ShowSubMenu(pinSubPanel);
+
+        }
+
+
+        private void delay_MouseDown(object sender, MouseEventArgs e)
+        {
+             
             type = "loopSubMenuC";
 
-            this.DoDragDrop(button9.Name, DragDropEffects.All);
+             this.DoDragDrop(delay.Name, DragDropEffects.All);
         }
 
-        private void Droppanel_DragEnter(object sender, DragEventArgs e)
-        {
-            e.Effect = DragDropEffects.Move;
-        }
-
-        private void Droppanel_DragDrop(object sender, DragEventArgs e)
-        {
-            FlowLayoutPanel _destination = (FlowLayoutPanel)sender;
-            UserControl data = (UserControl)e.Data.GetData(typeof(UserControl));
-
-            
-
-            if (type == "ifBtn")
-            {
-
-                ledControl l = new ledControl();
-
-                Droppanel.Controls.Add(l);
-                Droppanel.AutoScrollPosition = new Point(l.Left, l.Right);
-                this.Droppanel.Location = new System.Drawing.Point(47, 55);
-                type = "";
-                this._items.Add(l);
-
-
-
-            }
-            else if (type == "whileBtn")
-            {
-                DropLedControl c = new DropLedControl();
-                Droppanel.Controls.Add(c);
-                Droppanel.AutoScrollPosition = new Point(c.Left, c.Right);
-                type = "";
-                this._items.Add(c);
-            }
-            else if (type == "loopSubMenuC")
-            {
-                LoopSubMenuController c = new LoopSubMenuController();
-                Droppanel.Controls.Add(c);
-                Droppanel.AutoScrollPosition = new Point(c.Left, c.Right);
-                type = "";
-                this._items.Add(c);
-            }
-
-            Point p = _destination.PointToClient(new Point(e.X, e.Y));
-            var item = _destination.GetChildAtPoint(p);
-            int index = _destination.Controls.GetChildIndex(item, false);
-            //_destination.Controls.SetChildIndex(data, index);
-
-        }
-
-       
-
-
-
-        //private void Droppanel_DragDrop(object sender, DragEventArgs e)
-        //{
-        //    
-        //}
-
-        //private void Droppanel_DragEnter(object sender, DragEventArgs e)
-        //{
-        //    
-        //}
-
-        private void handleVariables1_Click(object sender, EventArgs e)
-        {
-
-            handleVariablesObj.Location = new Point(200, 300);
-            Droppanel.Controls.Add(handleVariablesObj);
-
-        }
-
-        
-
-        
-
-       
 
         private void ledControl1_MouseDown(object sender, MouseEventArgs e)
         {
             activeControl = sender as Control;
             previousLocation = e.Location;
             Cursor = Cursors.Hand;
-
 
         }
 
@@ -621,6 +335,32 @@ namespace FYPProject
             activeControl.Location = location;
         }
 
+        public void RemoveIfController(Button i) 
+        {
+
+            UserControl UC = (UserControl)i.Parent;
+            Droppanel.Controls.Remove(UC);
+            UC.Dispose();
+
+        }
         
+        public void RemoveWhileController(Button i)
+        {
+
+            UserControl UC = (UserControl)i.Parent;
+            Droppanel.Controls.Remove(UC);
+            UC.Dispose();
+
+        }
+
+       
+
+
     }
+
+
+    
+
+
+
 }

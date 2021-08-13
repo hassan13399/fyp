@@ -36,9 +36,11 @@ E:\Hard Drive\Hassan 92\8th Semester\FYP C#\FYPProject\FYPProject\bin\Debug\netc
 E:\Hard Drive\Hassan 92\8th Semester\FYP C#\FYPProject\FYPProject\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
 E:\Hard Drive\Hassan 92\8th Semester\FYP C#\FYPProject\FYPProject\obj\Debug\netcoreapp3.1\FYPProject.LEDControls.resources
 E:\Hard Drive\Hassan 92\8th Semester\FYP C#\FYPProject\FYPProject\obj\Debug\netcoreapp3.1\FYPProject.ledControl.resources
-E:\Hard Drive\Hassan 92\8th Semester\FYP C#\FYPProject\FYPProject\obj\Debug\netcoreapp3.1\FYPProject.IfStatement.resources
 E:\Hard Drive\Hassan 92\8th Semester\FYP C#\FYPProject\FYPProject\obj\Debug\netcoreapp3.1\FYPProject.Delay.resources
 E:\Hard Drive\Hassan 92\8th Semester\FYP C#\FYPProject\FYPProject\obj\Debug\netcoreapp3.1\FYPProject.HandleVariables.resources
 E:\Hard Drive\Hassan 92\8th Semester\FYP C#\FYPProject\FYPProject\obj\Debug\netcoreapp3.1\FYPProject.New.resources
 E:\Hard Drive\Hassan 92\8th Semester\FYP C#\FYPProject\FYPProject\obj\Debug\netcoreapp3.1\FYPProject.DropLedControl.resources
 E:\Hard Drive\Hassan 92\8th Semester\FYP C#\FYPProject\FYPProject\obj\Debug\netcoreapp3.1\FYPProject.SubMenus.LoopSubMenuController.resources
+E:\Hard Drive\Hassan 92\8th Semester\FYP C#\FYPProject\FYPProject\obj\Debug\netcoreapp3.1\FYPProject.ifStatementController.resources
+E:\Hard Drive\Hassan 92\8th Semester\FYP C#\FYPProject\FYPProject\obj\Debug\netcoreapp3.1\FYPProject.WhileConditionController.resources
+E:\Hard Drive\Hassan 92\8th Semester\FYP C#\FYPProject\FYPProject\obj\Debug\netcoreapp3.1\FYPProject.ControllerVariables.resources

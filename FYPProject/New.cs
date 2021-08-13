@@ -5,7 +5,7 @@ using Solid.Arduino.Firmata;
 
 namespace FYPProject
 {
-    class New : ledControl
+    class New 
 
     {
 
@@ -37,8 +37,6 @@ namespace FYPProject
 
         public void PerformBasicTest(IFirmataProtocol session)
         {
-
-            
 
 
             var firmware = session.GetFirmware();
@@ -117,21 +115,20 @@ namespace FYPProject
 
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // New
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.Name = "New";
-            this.Load += new System.EventHandler(this.New_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            //this.SuspendLayout();
+            //// 
+            //// New
+            //// 
+            //this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            //this.Name = "New";
+            //this.Load += new System.EventHandler(this.New_Load);
+            //this.ResumeLayout(false);
+            //this.PerformLayout();
 
         }
 
-        private void New_Load(object sender, EventArgs e)
-        {
+        
 
-        }
+        
     }
 }

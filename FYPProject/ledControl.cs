@@ -13,8 +13,12 @@ namespace FYPProject
         //public String getPinValueee = pinValue.Text;
         //public static string v;
         private Control activeControl;
-        private Point previousLocation;
-
+        private Point p;
+        public bool AllowDrag { get; set; }
+        private bool _isDragging = false;
+        private int _DDradius = 40;
+        private int _mX = 0;
+        private int _mY = 0;
         // ledControl l = new ledControl();
 
         public ledControl()
@@ -35,9 +39,18 @@ namespace FYPProject
 
         private void ledControl_MouseDown(object sender, MouseEventArgs e)
         {
-            activeControl = sender as Control;
-            previousLocation = e.Location;
-            Cursor = Cursors.Hand;
+
+            this.Focus();
+            base.OnMouseDown(e);
+            _mX = e.X;
+            _mY = e.Y;
+
+            this._isDragging = false;
+        }
+
+        private void ledControl_MouseMove(object sender, MouseEventArgs e)
+        {
+           
 
         }
 
@@ -53,17 +66,12 @@ namespace FYPProject
 
         }
 
-        private void ledControl_MouseMove(object sender, MouseEventArgs e)
-        {
-
-            
-        }
+       
 
         private void ledControl_MouseUp(object sender, MouseEventArgs e)
         {
 
-            //activeControl = null;
-            //Cursor = Cursors.Default;
+            
 
         }
     }
